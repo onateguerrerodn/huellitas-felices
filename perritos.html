@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catalogo de perritos disponibles para adopcion.">
+  <title>ACT 20   1RA. EVAL PROY. FINAL</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="db.js" defer></script>
+  <script src="catalogo.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!--logo, boton hamburguesa, menu-->
+  <header>
+    <!-- alinea logo, boton y menu -->
+    <section class="barra">
+      <!--enlace a la pagina de inicio -->
+      <a class="logo" href="index.html">Huellitas Felices</a>
+
+      <!--boton hamburguesa -->
+      <button class="menu-toggle" id="btn-menu" type="button"
+              aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+        <!-- las 3 rayitas se dibujan con css -->
+        <span class="icono-menu" aria-hidden="true"></span>
+      </button>
+
+      <!-- menu principal-->
+      <nav id="menu-principal" aria-label="Menu principal">
+        <ul>
+          <!--marca la pagina donde estas (el css la subraya) -->
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="perritos.html" aria-current="page">Perritos</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+  <!--contenido principal -->
+  <main>
+    <section aria-labelledby="titulo-cat">
+      <h2 id="titulo-cat">Perritos en adopcion</h2>
+      <section class="catalogo" id="catalogo" aria-label="Lista de perritos">
+        <article class="tarjeta">
+          <figure><img src="conchita1.jpg" alt="conchita"></figure>
+          <section class="cuerpo">
+            <h3>Conchita</h3>
+            <!--lista de descripcion-->
+            <dl><dt>Raza:</dt><dd>Mestiza</dd><dt>Edad:</dt><dd>2 años</dd><dt>Tamaño:</dt><dd>Mediana</dd></dl>
+            <!-- estatus-->
+            <p class="estatus disponible">Disponible</p>
+            <a class="boton" href="contacto.html">Agendar visita</a>
+          </section>
+        </article>
+        <article class="tarjeta">
+          <figure><img src="max2.jpg" alt="max"></figure>
+          <section class="cuerpo">
+            <h3>Max</h3>
+            <dl><dt>Raza:</dt><dd>Labrador</dd><dt>Edad:</dt><dd>3 años</dd><dt>Tamaño:</dt><dd>Grande</dd></dl>
+            <p class="estatus disponible">Disponible</p>
+            <a class="boton" href="contacto.html">Agendar visita</a>
+          </section>
+        </article>
+        <article class="tarjeta">
+          <figure><img src="chikis3.jpg" alt="chikis"></figure>
+          <section class="cuerpo">
+            <h3>Chikis</h3>
+            <dl><dt>Raza:</dt><dd>Chihuahua</dd><dt>Edad:</dt><dd>4 años</dd><dt>Tamaño:</dt><dd>Pequeño</dd></dl>
+            <p class="estatus proceso">En proceso</p>
+            <a class="boton" href="contacto.html">Agendar visita</a>
+          </section>
+        </article>
+        <article class="tarjeta">
+          <figure><img src="rocky4.jpg" alt="rocky"></figure>
+          <section class="cuerpo">
+            <h3>Rocky</h3>
+            <dl><dt>Raza:</dt><dd>Pastor</dd><dt>Edad:</dt><dd>3 años</dd><dt>Tamaño:</dt><dd>Grande</dd></dl>
+            <p class="estatus disponible">Disponible</p>
+            <a class="boton" href="contacto.html">Agendar visita</a>
+          </section>
+        </article>
+        <article class="tarjeta">
+          <figure><img src="nala5.jpg" alt="nala"></figure>
+          <section class="cuerpo">
+            <h3>Nala</h3>
+            <dl><dt>Raza:</dt><dd>Criolla</dd><dt>Edad:</dt><dd>1 año</dd><dt>Tamaño:</dt><dd>Mediana</dd></dl>
+            <p class="estatus disponible">Disponible</p>
+            <a class="boton" href="contacto.html">Agendar visita</a>
+          </section>
+        </article>
+        <article class="tarjeta">
+          <figure><img src="toby6.jpg" alt="toby"></figure>
+          <section class="cuerpo">
+            <h3>Toby</h3>
+            <dl><dt>Raza:</dt><dd>Schnauzer</dd><dt>Edad:</dt><dd>5 años</dd><dt>Tamaño:</dt><dd>Pequeño</dd></dl>
+            <p class="estatus disponible">Disponible</p>
+            <a class="boton" href="contacto.html">Agendar visita</a>
+          </section>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <!--pie de pagina-->
+  <footer>
+    <section class="pie">
+      <p><strong>Huellitas Felices</strong><br>Refugio de perritos en busca de hogar.</p>
+      <address>
+        Direccion: Calle Hidalgo 782 Colonia Obregon<br>
+        Telefono: 477 672 5727<br>
+        <a href="contacto.html">Agenda tu visita</a><br>
+        <a href="admin.html">Acceso administrador</a>
+      </address>
+      <small>&copy; ACT 20   1RA. EVAL PROY. FINAL Naomi Oñate y Eliezer Arellano.</small>
+    </section>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Refugio de perritos.">
+  <title>ACT 20   1RA. EVAL PROY. FINAL</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- javascript vinculado.-->
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!-- logo, boton hamburguesa, menu-->
+  <header>
+    <section class="barra">
+      <!-- enlace a la pagina de inicio -->
+      <a class="logo" href="index.html">Huellitas Felices</a>
+
+      <!--boton hamburguesa-->
+      <button class="menu-toggle" id="btn-menu" type="button"
+              aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menú">
+        <!-- Las 3 rayitas se dibujan con css-->
+        <span class="icono-menu" aria-hidden="true"></span>
+      </button>
+
+      <!-- menu principal-->
+      <nav id="menu-principal" aria-label="Menú principal">
+        <ul>
+          <!-- marca la pagina donde estas (el css la subraya) -->
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="perritos.html">Perritos</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+  <!--contenido principal-->
+  <main>
+    <!-- banner mensaje principal, boton, logotipo-->
+    <section class="banner" aria-labelledby="titulo-banner">
+      <article>
+        <h1 id="titulo-banner">Buscamos un hogar para cada perrito</h1>
+        <p>Conoce a los perritos del refugio y agenda tu visita en linea.</p>
+        <!--lleva al catalogo -->
+        <a class="boton" href="perritos.html">Ver perritos</a>
+      </article>
+      <!--logo -->
+      <img src="img/huella.svg" alt="logotipo del refugio">
+    </section>
+
+    <!--pasos para adoptar -->
+    <section aria-labelledby="titulo-pasos">
+      <h2 id="titulo-pasos">¿Como adoptar?</h2>
+      <ol class="pasos">
+        <li><h3>Elige</h3><p>Ve a los perritos y escoge al que te robo el corazon.</p></li>
+        <li><h3>Agenda tu visita</h3><p>Elige fecha y hora en nuestra agenda en linea para conocer al peque</p></li>
+        <li><h3>Conocelo</h3><p>Visita el refugio y si hay conexion, inicia el proceso de adopcion.</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- pie de pagina-->
+  <footer>
+    <section class="pie">
+      <p><strong>Huellitas Felices</strong><br>Refugio de perritos en busca de hogar.</p>
+      <address>
+        Direccion: Calle Hidalgo 782 Colonia Obregon<br>
+        Telefono: 477 672 5727<br>
+        <a href="contacto.html">Agenda tu visita</a><br>
+        <a href="admin.html">Acceso administrador</a>
+      </address>
+      <small>&copy; ACT 20   1RA. EVAL PROY. FINAL Naomi Oñate y Eliezer Arellano.</small>
+    </section>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,323 @@
+/* ==========================================================================
+   styles.css  ·  Huellitas Felices
+   Hoja de estilos centralizada para todo el sitio.
+
+   Contenido:
+     1. Variables (colores, fuente, espacios)
+     2. Reinicio y estilos base
+     3. Encabezado y navegación (Flexbox)
+     4. Botón hamburguesa  [ETAPA 3]
+     5. Banner de inicio
+     6. Botones
+     7. Pasos de adopción (Grid)
+     8. Catálogo de perritos (Grid)
+     9. Formulario + mensajes de validación  [ETAPA 3 se agrega]
+    10. Pie de página (Flexbox)
+    11. Media Queries: Laptop, Tablet y Móvil
+   ========================================================================== */
+
+
+/* variables */
+:root {
+  --color-primario: #7b4a2b;      /* cafe principal (botones, logo, enlaces) */
+  --color-primario-osc: #5c3720;  /* cafe oscuro (hover de botones) */
+  --color-fondo: #f5ede0;         /* fondo general de la pagina */
+  --color-superficie: #fffaf2;    /* fondo de tarjetas, header y formulario */
+  --color-beige: #ead7bb;         /* detalles y fondos suaves */
+  --color-texto: #3a2a1c;         /* color del texto principal */
+  --color-suave: #6b5744;         /* texto secundario */
+  --color-borde: #d8c7ae;         /* bordes */
+  --color-ok: #3f6212;            /* verde: disponible / campo valido */
+  --color-proceso: #9a3412;       /* naranja: en proceso */
+  --color-error: #b91c1c;         /* rojo: errores de validacion */
+  --color-error-fondo: #fef2f2;   /* fondo rojo muy claro para errores */
+  --fuente: "Segoe UI", Arial, sans-serif; /* tipografia del sitio */
+  --radio: 10px;                  /* redondeo de esquinas */
+  --espacio: 1.5rem;              /* separacion estandar */
+  --ancho-max: 1200px;            /* ancho maximo */
+}
+
+
+/* reinicio y estilos */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: var(--fuente); color: var(--color-texto);
+       background: var(--color-fondo); line-height: 1.6; }
+
+/* Imagenes nunca mas anchas que su contenedor */
+img { max-width: 100%; height: auto; display: block; }
+ul, ol { list-style: none; }
+a { color: var(--color-primario); }
+
+/* centra el contenido*/
+main { max-width: var(--ancho-max); margin: 0 auto; padding: var(--espacio); }
+section { margin-bottom: 3rem; }
+h1, h2, h3 { line-height: 1.2; }
+h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+[hidden] { display: none !important; }
+
+
+/*encabezado y navegacion*/
+header { background: var(--color-superficie);
+         border-bottom: 1px solid var(--color-borde); }
+
+/* logo a la izquierda, menu a la derecha, centrados en vertical */
+.barra { max-width: var(--ancho-max); margin: 0 auto; padding: 1rem var(--espacio);
+         display: flex; justify-content: space-between; align-items: center;
+         flex-wrap: wrap; gap: 1rem; }
+.logo { font-size: 1.4rem; font-weight: 700; color: var(--color-primario);
+        text-decoration: none; }
+
+/* Lista del menu en fila */
+nav ul { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+nav a { text-decoration: none; color: var(--color-texto); font-weight: 600;
+        padding: .5rem 0; border-bottom: 3px solid transparent; }
+nav a:hover, nav a[aria-current="page"] { border-bottom-color: var(--color-primario); }
+
+
+/*boton hamburguesa*/
+.menu-toggle { display: none;                 /* oculto por defecto */
+               align-items: center; justify-content: center;
+               width: 44px; height: 44px;     /* 44px = tamaño minimo */
+               background: var(--color-superficie);
+               border: 1px solid var(--color-borde); border-radius: var(--radio);
+               cursor: pointer; }
+.menu-toggle:focus-visible { outline: 3px solid #c9a678; outline-offset: 2px; }
+
+/* las 3 rayitas */
+.icono-menu,
+.icono-menu::before,
+.icono-menu::after { display: block; width: 22px; height: 3px;
+                     background: var(--color-primario); border-radius: 2px;
+                     transition: transform .25s ease, background .25s ease, top .25s ease; }
+.icono-menu { position: relative; }
+.icono-menu::before,
+.icono-menu::after { content: ""; position: absolute; left: 0; }
+.icono-menu::before { top: -7px; }  /* rayita superior */
+.icono-menu::after  { top: 7px; }   /* rayita inferior */
+
+/* Cuando el menu esta abierto la hamburguesa se transforma en una X: la del centro desaparece y las otras giran */
+.menu-toggle[aria-expanded="true"] .icono-menu { background: transparent; }
+.menu-toggle[aria-expanded="true"] .icono-menu::before { top: 0; transform: rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .icono-menu::after  { top: 0; transform: rotate(-45deg); }
+
+
+/* banner de inicio*/
+/*texto a la izquierda, imagen a la derecha, con degradado de fondo */
+.banner { background: linear-gradient(135deg, var(--color-beige), #f6ecd9);
+          border-radius: var(--radio); padding: 4rem var(--espacio);
+          display: flex; align-items: center; justify-content: space-between;
+          gap: 2rem; }
+.banner h1 { font-size: 2.8rem; margin-bottom: 1rem; }
+.banner p { font-size: 1.15rem; color: var(--color-suave); margin-bottom: 1.5rem; }
+.banner img { width: 220px; flex-shrink: 0; }
+
+
+/* botones*/
+.boton { display: inline-block; background: var(--color-primario); color: #fff;
+         padding: .8rem 1.6rem; border-radius: var(--radio); border: 0;
+         font-size: 1rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+.boton:hover { background: var(--color-primario-osc); }
+
+
+/* pasos para adoptar*/
+.pasos { counter-reset: paso; display: grid;
+         grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--espacio); }
+.pasos li { background: var(--color-superficie); border: 1px solid var(--color-borde);
+            border-radius: var(--radio); padding: var(--espacio); }
+/* Círculo con el numero del paso*/
+.pasos li::before { counter-increment: paso; content: counter(paso);
+            display: inline-block; width: 2rem; height: 2rem; line-height: 2rem;
+            text-align: center; border-radius: 50%; background: var(--color-primario);
+            color: #fff; font-weight: 700; margin-bottom: .5rem; }
+
+
+/* catalogo de perritos*/
+.catalogo { display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: var(--espacio); }
+
+/* para que el boton siempre quede al fondo */
+.tarjeta { background: var(--color-superficie); border: 1px solid var(--color-borde);
+           border-radius: var(--radio); overflow: hidden; display: flex;
+           flex-direction: column; }
+.tarjeta figure { background: var(--color-beige); aspect-ratio: 4 / 3;
+                  overflow: hidden; }
+.tarjeta figure img { width: 100%; height: 100%; object-fit: cover;
+                      object-position: center; }
+.tarjeta figure img[src$=".svg"] { object-fit: contain; padding: 2rem; }
+.tarjeta .cuerpo { padding: 1rem; display: flex; flex-direction: column;
+                   gap: .5rem; flex: 1; }
+
+/* Datos del perrito */
+.tarjeta dl { display: grid; grid-template-columns: auto 1fr; gap: .2rem .6rem;
+              font-size: .9rem; color: var(--color-suave); }
+.tarjeta dt { font-weight: 600; }
+
+/* estatus con color segun la clase */
+.estatus { font-weight: 700; font-size: .9rem; }
+.estatus.disponible { color: var(--color-ok); }
+.estatus.proceso { color: var(--color-proceso); }
+
+/* empuja el boton hasta abajo de la tarjeta */
+.tarjeta .boton { margin-top: auto; text-align: center; }
+
+
+/* formulario de contacto y vaidacion*/
+form { background: var(--color-superficie); border: 1px solid var(--color-borde);
+       border-radius: var(--radio); padding: var(--espacio); max-width: 700px;
+       display: grid; gap: .8rem; }
+label { display: grid; gap: .3rem; font-weight: 600; }
+input, select, textarea { font: inherit; padding: .7rem; width: 100%;
+       border: 1px solid #8a6f55; border-radius: 8px; background: #fff; }
+input:focus, select:focus, textarea:focus { outline: 3px solid #c9a678; }
+/*borde rojo si el campo escrito no es valido */
+input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) {
+       border-color: var(--color-error); }
+fieldset { border: 0; display: grid; gap: .6rem; }
+.check { display: flex; gap: .6rem; align-items: flex-start; font-weight: 400; }
+.check input { width: auto; margin-top: .35rem; }
+
+/* estados de validacion */
+/*borde rojo grueso y fondo rosado suave */
+input.invalido, select.invalido, textarea.invalido {
+       border: 2px solid var(--color-error); background: var(--color-error-fondo); }
+/* Campo correcto: borde verde */
+input.valido, select.valido, textarea.valido {
+       border: 2px solid var(--color-ok); }
+
+/* mensaje de error debajo de cada campo*/
+.error { display: block; min-height: 1.3em; line-height: 1.3;
+         color: var(--color-error); font-weight: 600; font-size: .88rem; }
+/* advertencia delante del texto*/
+.error:not(:empty)::before { content: "⚠ "; }
+
+/* Caja roja con el resumen de errores al enviar */
+.alerta { background: var(--color-error-fondo); border: 1px solid var(--color-error);
+          color: #7f1d1d; padding: .8rem 1rem; border-radius: var(--radio); font-weight: 600; }
+
+/* Caja verde de confirmacion cuando el envio es válido */
+.exito { background: #ecfccb; border: 1px solid var(--color-ok); color: #365314;
+         padding: 1rem; border-radius: var(--radio); font-weight: 600;
+         max-width: 700px; margin-bottom: 1.2rem; }
+
+
+/* pie de pagina*/
+footer { background: #3b2a1a; color: #f5ede0; margin-top: 2rem; }
+.pie { max-width: var(--ancho-max); margin: 0 auto; padding: var(--espacio);
+       display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+footer a { color: #ead7bb; }
+address { font-style: normal; } /* quita la cursiva por defecto de <address> */
+
+
+/*media queries Laptop mas de 1023px,tablet 768px a 1023px, telefono menos de 768px */
+
+/* tablet*/
+@media (max-width: 1023px) {
+  .catalogo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .banner h1 { font-size: 2.3rem; }
+  .banner img { width: 160px; }
+}
+
+/* telefono*/
+@media (max-width: 767px) {
+  .catalogo, .pasos { grid-template-columns: 1fr; }
+
+  /* logo a la izquierda y hamburguesa a la derecha en la misma fila */
+  .barra { flex-direction: row; flex-wrap: wrap;
+           justify-content: space-between; align-items: center; }
+  .menu-toggle { display: flex; } 
+  nav { width: 100%; }
+  nav ul { flex-direction: column; gap: .2rem; }
+
+  /*el menu empieza oculto y solo se ve cuando main.js le agrega la clase "abierto". Sin JS (.js no existe) el menú siempre se ve. */
+  .js nav { display: none; }
+  .js nav.abierto { display: block; }
+  /* En el menu movil cada enlace ocupa todo el ancho y es facil de tocar */
+  nav a { display: block; padding: .7rem 0; }
+
+  .banner { flex-direction: column-reverse; text-align: center; padding: 2rem 1rem; }
+  .banner h1 { font-size: 1.9rem; }
+  .pie { flex-direction: column; }
+  main { padding: 1rem; }
+}
+
+/* Ajustes de espaciado */
+.tarjeta .cuerpo, .barra, .pie, .banner { margin-bottom: 0; }
+#titulo-cat + p { margin-bottom: 1.5rem; }
+
+
+/* agenda en linea, catalogo con base de datos y administrador */
+
+/* "adoptado" (gris) y leyenda en la tarjeta */
+.estatus.adoptado { color: var(--color-suave); }
+.nota-adoptado { margin-top: auto; text-align: center; font-weight: 600; color: var(--color-suave); }
+
+/* Opciones de horario ocupadas (deshabilitadas) */
+select option:disabled { color: #9b8a78; }
+select:disabled { background: #f0e8da; cursor: not-allowed; }
+
+/* Boton secundario */
+.boton-claro { background: var(--color-beige); color: var(--color-texto); border: 1px solid var(--color-borde); }
+.boton-claro:hover { background: #e0c9a5; }
+
+/* Panel de administrador*/
+.admin section { margin-bottom: 1rem; }
+.admin-sesion { display: flex; justify-content: space-between; align-items: center;
+                gap: 1rem; flex-wrap: wrap; }
+#aviso-admin { margin-bottom: 1rem; max-width: 700px; }
+
+/* Pestañas */
+.tabs { display: flex; gap: .5rem; flex-wrap: wrap; border-bottom: 2px solid var(--color-borde); }
+.tab { font: inherit; font-weight: 600; padding: .7rem 1.1rem; cursor: pointer;
+       background: transparent; color: var(--color-texto);
+       border: 0; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.tab[aria-selected="true"] { color: var(--color-primario); border-bottom-color: var(--color-primario); }
+.tab:hover { background: var(--color-beige); }
+.tab:focus-visible { outline: 3px solid #c9a678; }
+.tab-panel { padding-top: 1rem; }
+.filtros { max-width: none; display: flex; flex-wrap: wrap; gap: 1rem; align-items: end;
+           padding: 1rem; margin-bottom: 1rem; }
+.filtros label { min-width: 180px; }
+
+/* no desbordan la pagina en telefono */
+.tabla-scroll { overflow-x: auto; background: var(--color-superficie);
+                border: 1px solid var(--color-borde); border-radius: var(--radio); }
+.admin table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .92rem; }
+.admin th, .admin td { text-align: left; padding: .6rem .7rem; vertical-align: middle;
+                       border-bottom: 1px solid var(--color-borde); }
+.admin th { background: var(--color-beige); white-space: nowrap; }
+.admin tbody tr:last-child td { border-bottom: 0; }
+.vacio { color: var(--color-suave); padding: 1rem 0; }
+.miniatura { width: 56px; height: 42px; object-fit: cover; border-radius: 6px; }
+
+/* Botones de accion dentro de las tablas */
+.acciones { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; }
+.boton-mini { font: inherit; font-size: .82rem; font-weight: 600; padding: .35rem .6rem; cursor: pointer;
+              border-radius: 6px; border: 1px solid var(--color-primario);
+              background: var(--color-superficie); color: var(--color-primario); }
+.boton-mini:hover { background: var(--color-beige); }
+.boton-mini.ok { background: var(--color-ok); border-color: var(--color-ok); color: #fff; }
+.boton-mini.peligro { border-color: var(--color-error); color: var(--color-error); }
+.boton-mini.peligro:hover { background: var(--color-error-fondo); }
+.enlace { font: inherit; background: none; border: 0; padding: 0; cursor: pointer;
+          color: var(--color-primario); text-decoration: underline; text-align: left; }
+
+/* Etiquetas de estado */
+.chip { display: inline-block; padding: .15rem .6rem; border-radius: 999px; font-size: .8rem;
+        font-weight: 700; white-space: nowrap; background: var(--color-beige); color: var(--color-texto); }
+.chip-programada, .chip-solicitada { background: #ffedd5; color: var(--color-proceso); }
+.chip-realizada { background: #e0f2fe; color: #075985; }
+.chip-adopcion_concretada, .chip-completada, .chip-adoptante { background: #ecfccb; color: #365314; }
+.chip-cancelada { background: #f3f4f6; color: #4b5563; }
+
+/* Registro de perrito y detalle de historial */
+.registro { max-width: 700px; margin-bottom: 1rem; }
+.registro summary { cursor: pointer; font-weight: 700; padding: .6rem 0; color: var(--color-primario); }
+.detalle { background: var(--color-superficie); border: 2px solid var(--color-primario);
+           border-radius: var(--radio); padding: var(--espacio); margin-top: 1.5rem; }
+.detalle h4 { margin: 1.2rem 0 .5rem; }
+
+@media (max-width: 767px) {
+  .filtros label { min-width: 100%; }
+}

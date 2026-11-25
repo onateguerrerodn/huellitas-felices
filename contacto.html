@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- descripcion del buscador -->
+  <meta name="description" content="Agenda tu visita al refugio.">
+  <title>ACT 20   1RA. EVAL PROY. FINAL</title>
+  <link rel="stylesheet" href="styles.css">
+  <!--JavaScript vinculado -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="db.js" defer></script>
+  <script src="agenda.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!--logo, boton hamburguesa y menu-->
+  <header>
+    <section class="barra">
+      <a class="logo" href="index.html">Huellitas Felices</a>
+      <button class="menu-toggle" id="btn-menu" type="button"
+              aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menú">
+        <!-- las 3 rayitas se dibujan con css -->
+        <span class="icono-menu" aria-hidden="true"></span>
+      </button>
+
+      <!-- menu principal-->
+      <nav id="menu-principal" aria-label="Menú principal">
+        <ul>
+          <!--marca la pagina donde estas (el css la subraya) -->
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="perritos.html">Perritos</a></li>
+          <li><a href="contacto.html" aria-current="page">Contacto</a></li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+  <!--contenido principal-->
+  <main>
+    <section aria-labelledby="titulo-contacto">
+      <h2 id="titulo-contacto">Agenda tu visita</h2>
+      <p>Todos los campos son obligatorios.</p>
+      <br>
+
+      <!--mensaje de exito -->
+      <p class="exito" id="mensaje-exito" role="status" hidden></p>
+
+      <!--conserva los atributos de validacion -->
+      <form id="form-contacto" action="contacto.html" method="get">
+
+        <!--alerta general-->
+        <p class="alerta" id="alerta-form" role="alert" hidden></p>
+
+        <!-- datos personales -->
+        <fieldset>
+          <legend>Completa con tus datos para conocer al peque</legend>
+          <label>Nombre completo
+            <input type="text" name="nombre" required minlength="3" maxlength="80" placeholder="Ejem. Angel Arellano" autocomplete="name" aria-describedby="error-nombre">
+            <small class="error" id="error-nombre" aria-live="polite"></small>
+          </label>
+          <label>Correo electronico
+            <input type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email" aria-describedby="error-email">
+            <small class="error" id="error-email" aria-live="polite"></small>
+          </label>
+          <label>Telefono (10 digitos)
+            <input type="tel" name="telefono" required pattern="[0-9]{10}" inputmode="numeric" placeholder="4771234567" title="Escribe 10 digitos, solo numeros" autocomplete="tel" aria-describedby="error-telefono">
+            <small class="error" id="error-telefono" aria-live="polite"></small>
+          </label>
+        </fieldset>
+
+        <!--datos de la visita-->
+        <fieldset>
+          <legend>Tu visita</legend>
+          <p class="alerta" id="aviso-agenda" hidden></p>
+          <label>Perrito que quieres conocer
+            <select name="perrito" required aria-describedby="error-perrito">
+              <option value="">Cargando perritos…</option>
+            </select>
+            <small class="error" id="error-perrito" aria-live="polite"></small>
+          </label>
+          <label>Motivo
+            <select name="motivo" required aria-describedby="error-motivo">
+              <option value="">Selecciona una opcion</option>
+              <option value="visita">Quiero visitar a un perrito</option>
+              <option value="adopcion">Quiero iniciar una adopcion</option>
+            </select>
+            <small class="error" id="error-motivo" aria-live="polite"></small>
+          </label>
+          <label>Fecha de la visita
+            <input type="date" name="fecha" required aria-describedby="error-fecha">
+            <small class="error" id="error-fecha" aria-live="polite"></small>
+          </label>
+          <label>Horario (lunes a sabado, de 10:00 a 16:00 h)
+            <select name="hora" required disabled aria-describedby="error-hora">
+              <option value="">Primero elige una fecha</option>
+            </select>
+            <small class="error" id="error-hora" aria-live="polite"></small>
+          </label>
+          <label>Mensaje
+            <textarea name="mensaje" rows="4" required minlength="10" placeholder="Cuentanos por que te interesa este perrito y si tienes mascotas" aria-describedby="error-mensaje"></textarea>
+            <small class="error" id="error-mensaje" aria-live="polite"></small>
+          </label>
+        </fieldset>
+
+        <!--aceptacion para poder contactar al adoptante-->
+        <label class="check">
+          <input type="checkbox" name="acepto" required aria-describedby="error-acepto">
+          Te contactaremos para confirmar tu visita.
+        </label>
+        <small class="error" id="error-acepto" aria-live="polite"></small>
+
+        <!--boton de envio-->
+        <button class="boton" type="submit">Agendar visita</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- pie de pagina-->
+  <footer>
+    <section class="pie">
+      <p><strong>Huellitas Felices</strong><br>Refugio de perritos en busca de hogar.</p>
+      <address>
+        Direccion: Calle Hidalgo 782 Colonia Obregon<br>
+        Telefono: 477 672 5727<br>
+        <a href="contacto.html">Agenda tu visita</a><br>
+        <a href="admin.html">Acceso administrador</a>
+      </address>
+      <small>&copy; ACT 20   1RA. EVAL PROY. FINAL Naomi Oñate y Eliezer Arellano.</small>
+    </section>
+  </footer>
+</body>
+</html>

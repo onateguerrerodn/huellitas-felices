@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Panel privado-->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel de administracion
+  </title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="db.js" defer></script>
+  <script src="admin.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header>
+    <section class="barra">
+      <a class="logo" href="index.html">Huellitas Felices</a>
+      <button class="menu-toggle" id="btn-menu" type="button"
+              aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+        <span class="icono-menu" aria-hidden="true"></span>
+      </button>
+      <nav id="menu-principal" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="perritos.html">Perritos</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+
+  <main class="admin">
+    <h2>Panel de administracion</h2>
+    <!-- mensajes de exito o error -->
+    <p id="aviso-admin" role="status" hidden></p>
+
+    <!--inicio de sesion-->
+    <section id="panel-login" aria-labelledby="titulo-login">
+      <h3 id="titulo-login">Inicia sesion</h3>
+      <form id="form-login" novalidate>
+        <label>Correo
+          <input type="email" name="email" required autocomplete="username">
+        </label>
+        <label>Contraseña
+          <input type="password" name="password" required autocomplete="current-password">
+        </label>
+        <button class="boton" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <!--panel solo para administrador-->
+    <section id="panel-admin" hidden>
+      <section class="admin-sesion">
+        <p id="admin-usuario"></p>
+        <button class="boton boton-claro" id="btn-salir" type="button">Cerrar sesion</button>
+      </section>
+
+      <!-- pestañas -->
+      <section class="tabs" role="tablist" aria-label="Secciones del panel">
+        <button type="button" role="tab" class="tab" data-tab="visitas" aria-selected="true">Agenda de visitas</button>
+        <button type="button" role="tab" class="tab" data-tab="perritos" aria-selected="false">Perritos</button>
+        <button type="button" role="tab" class="tab" data-tab="adoptantes" aria-selected="false">Adoptantes</button>
+      </section>
+
+      <!-- agenda -->
+      <section id="tab-visitas" class="tab-panel" aria-label="Agenda de visitas">
+        <form class="filtros" id="filtros-visitas" novalidate>
+          <label>Estado
+            <select name="estado">
+              <option value="programada">Programadas</option>
+              <option value="realizada">Realizadas</option>
+              <option value="adopcion_concretada">Adopcion concretada</option>
+              <option value="cancelada">Canceladas</option>
+              <option value="todas">Todas</option>
+            </select>
+          </label>
+          <label>Dia
+            <input type="date" name="fecha">
+          </label>
+          <button class="boton boton-claro" type="reset">Limpiar</button>
+        </form>
+        <section id="lista-visitas"></section>
+      </section>
+
+      <!-- perritos -->
+      <section id="tab-perritos" class="tab-panel" aria-label="Perritos" hidden>
+        <details class="registro">
+          <summary>Registrar un perrito nuevo</summary>
+          <form id="form-perrito" novalidate>
+            <p>Al registrarlo quedara con estatus <strong>Disponible</strong> automaticamente.</p>
+            <label>Nombre <input type="text" name="nombre" required maxlength="60"></label>
+            <label>Raza <input type="text" name="raza" value="Mestizo" required></label>
+            <label>Edad en años (usa 0.5 para 6 meses)
+              <input type="number" name="edad_anios" min="0" max="30" step="0.5" required>
+            </label>
+            <label>Tamaño
+              <select name="tamano" required>
+                <option value="Pequeño">Pequeño</option>
+                <option value="Mediano" selected>Mediano</option>
+                <option value="Grande">Grande</option>
+              </select>
+            </label>
+            <label>Estado de salud <input type="text" name="salud" placeholder="Ej. Vacunado y desparasitado" required></label>
+            <label>Foto <input type="file" name="foto" accept="image/jpeg,image/png,image/webp"></label>
+            <button class="boton" type="submit">Guardar perrito</button>
+          </form>
+        </details>
+        <section id="lista-perritos"></section>
+      </section>
+
+      <!-- adoptantes -->
+      <section id="tab-adoptantes" class="tab-panel" aria-label="Registro de adoptantes" hidden>
+        <form class="filtros" id="filtros-personas" novalidate>
+          <label>Mostrar
+            <select name="rol">
+              <option value="todos">Todos</option>
+              <option value="adoptante">Solo adoptantes</option>
+              <option value="interesado">Solo interesados</option>
+            </select>
+          </label>
+          <label>Buscar
+            <input type="search" name="texto" placeholder="Nombre o correo">
+          </label>
+        </form>
+        <section id="lista-personas"></section>
+      </section>
+
+      <!-- historial del perrito o persona -->
+      <section id="detalle" class="detalle" aria-live="polite" hidden></section>
+    </section>
+  </main>
+
+  <footer>
+    <section class="pie">
+      <p><strong>Huellitas Felices</strong><br>Refugio de perritos en busca de hogar.</p>
+      <address>
+        Direccion: Calle Hidalgo 782 Colonia Obregon<br>
+        Telefono: 477 672 5727<br>
+        <a href="contacto.html">Agenda tu visita</a>
+      </address>
+      <small>&copy; ACT 20   1RA. EVAL PROY. FINAL Naomi Oñate y Eliezer Arellano.</small>
+    </section>
+  </footer>
+</body>
+</html>
